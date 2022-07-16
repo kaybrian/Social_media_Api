@@ -48,6 +48,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+AUTH_USER_MODEL = 'authentication.User'
+
 ROOT_URLCONF = 'social.urls'
 
 TEMPLATES = [
@@ -57,6 +60,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+ 
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
