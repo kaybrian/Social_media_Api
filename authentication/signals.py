@@ -2,9 +2,7 @@ from django.db.models.signals import post_save,post_delete
 from django.dispatch import receiver
 
 from django.contrib.auth import get_user_model
-from .models import Profile 
-
-User = get_user_model()
+from .models import Profile,User
 
 
 def create_profile(sender,instance,created,**kwargs):
@@ -32,6 +30,6 @@ def updateuser(sender,instance,created,**kwargs):
 
 
 
-post_save.connect(createprofile, sender=User)
+post_save.connect(create_profile, sender=User)
 post_save.connect(updateuser, sender=Profile)
 post_delete.connect(deleteuser, sender=Profile)
