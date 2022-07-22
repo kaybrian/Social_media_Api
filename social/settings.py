@@ -1,5 +1,7 @@
 from decouple import config 
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,10 +33,12 @@ INSTALLED_APPS = [
     # third party applications 
     'rest_framework',
     'phonenumber_field',
+    'cloudinary',
 
     # our apps
     'authentication.apps.AuthenticationConfig',
     'posts.apps.PostsConfig',
+    'user.apps.UserConfig',
 
 ]
 
@@ -125,3 +129,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# adding cloudinary 
+cloudinary.config( 
+  cloud_name = config('cloud_name'), 
+  api_key = config('api_key'),
+  api_secret = config('api_secret')
+)

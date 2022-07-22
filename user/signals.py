@@ -2,7 +2,8 @@ from django.db.models.signals import post_save,post_delete
 from django.dispatch import receiver
 
 from django.contrib.auth import get_user_model
-from .models import Profile,User
+from .models import Profile
+from authentication.models import User
 
 
 def create_profile(sender,instance,created,**kwargs):

@@ -48,51 +48,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','first_name','last_name','phone_number']
 
-
     def __str__(self):
-        return f'{self.first_name} -> {self.email}'
+        return str(self.first_name)
     
 
-
-class Profile(models.Model):
-    id = models.UUIDField(default=uuid.uuid4,
-                          primary_key=True, unique=True, editable=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True,blank=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True, max_length=200)
-    phone_number = PhoneNumberField(unique=True,null=True,blank=True)
-    headline = models.CharField(max_length=200, null=True, blank=True)
-    bio = models.TextField(null=True, blank=True)
-    profile_image = models.ImageField(
-        null=True, blank=True, upload_to="profiles/", default="profiles/user.png")
-    facebook_link =  models.CharField(max_length=200, null=True, blank=True)
-    instagram_link =  models.CharField(max_length=200, null=True, blank=True)
-    github_link =  models.CharField(max_length=200, null=True, blank=True)
-    twitter_link =  models.CharField(max_length=200, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(self.user.username)
-     
-
-
-class Message(models.Model):
-    sender = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL, null=True, blank=True)
-    recipient = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL,
-        null=True, blank=True, related_name='messages'
-    )
-    is_read = models.BooleanField(default=False, null=True)
-    subject = models.CharField(max_length=200, null=True, blank=True)
-    body = models.TextField()
-    id = models.UUIDField(default=uuid.uuid4,
-                          primary_key=True, unique=True, editable=False)
-    created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.subject
-
-    class Meta:
-        ordering = ['is_read', '-created']
