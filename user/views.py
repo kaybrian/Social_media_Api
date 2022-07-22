@@ -13,20 +13,24 @@ class HelloProfile(generics.GenericAPIView):
         status=status.HTTP_200_OK
         )
 
-
 class ProfileAPIView(generics.GenericAPIView):
-    serializer_class = serializers.PRofileSerializer
-
+    serializer_class = serializers.ProfileSerializer
     def get(self,request):
         user = request.user
-        print(user)
         profile = get_object_or_404(Profile,user=user)
-        print(profile)
+
         serializer = self.serializer_class(instance=profile)
-        print(serializer)
         return Response(data=serializer.data,status=status.HTTP_200_OK)
 
+    def put(self, request):
+        user = request.user
+        data = request.data
 
-        # return Response(data={
-        #     "message":"it orked here now"
-        # },status=status.HTTP_200_OK)
+        profile = get_object_or_404(Profile,user=user)
+        serializer = self.serializer_class(instance=profile)
+
+        if serilalizer.is_valid():
+            serilalizer.save()
+            return Response(data=serilalizer.data, status=status.HTTP_200_OK)
+
+        return Response(data=serializer.data,status=status.HTTP_400_BAD_REQUEST)
