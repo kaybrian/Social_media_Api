@@ -25,16 +25,12 @@ after install all the pages,
 
 an example is 
 
-`
-SECRET_KEY = ********************
+`SECRET_KEY = ********************
 DEBUG = True
-
-
 cloud_name = ********fbga*********
 api_key =  **********47869414**********
-api_secret = ************srwf6************
+api_secret = ************srwf6***********
 `
-
 
 then migrate 
 `python manage.py migrate`
