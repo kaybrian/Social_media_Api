@@ -30,7 +30,6 @@ def updateuser(sender,instance,created,**kwargs):
         user.phone_number = profile.phone_number
 
 
-
 post_save.connect(create_profile, sender=User)
 post_save.connect(updateuser, sender=Profile)
 post_delete.connect(deleteuser, sender=Profile)

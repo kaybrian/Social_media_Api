@@ -33,8 +33,8 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(read_only=True)
     user =serializers.CharField(read_only=True) 
     name =serializers.CharField(read_only=True) 
-    email = serializers.EmailField(read_only=True) 
-    phone_number = PhoneNumberField(read_only=True)
+    email = serializers.EmailField(max_length=60)
+    phone_number = PhoneNumberField(allow_null=False,allow_blank=False)
 
     class Meta:
         model = Profile
