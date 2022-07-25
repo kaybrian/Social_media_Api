@@ -38,7 +38,7 @@ class UpdateProfileDetails(generics.GenericAPIView):
         data = request.data
 
         profile = get_object_or_404(Profile,user=user)
-        serializer = self.serializer_class(instance=profile,data=request.data)
+        serializer = self.serializer_class(instance=profile,data=request.data, partial=True)
 
 
         if serializer.is_valid():

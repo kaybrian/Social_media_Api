@@ -41,7 +41,7 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
         fields = ['id','user','name','email','phone_number','headline','bio','profile_image','facebook_link','instagram_link','github_link','twitter_link']
 
 class ProfileUpdateImage(serializers.ModelSerializer):
-    profile_image = serializers.ImageField(max_length=None, allow_empty_file=False,)
+    profile_image = serializers.ImageField(max_length=None, allow_empty_file=False)
     id = serializers.UUIDField(read_only=True)
     user =serializers.CharField(read_only=True) 
 
