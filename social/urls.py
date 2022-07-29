@@ -21,9 +21,15 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    # django / swagger docs pages 
     path('swagger<format>.json|.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+    # getting or using djoser for user creation 
+    path('auth/', include('djoser.urls.jwt')),
+
+
     path('admin/', admin.site.urls),
     path('auth/',include('authentication.urls')),
     path('user/',include('user.urls')),
