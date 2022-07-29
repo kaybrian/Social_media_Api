@@ -37,3 +37,6 @@ then migrate
 
 afther runnning a migration, run the server for you app to start working 
 `python manage.py runserver`
+
+
+When you run the server using `python manage.py runserver`, please look out for the `http://127.0.0.1:8000/docs/` URL since it contains the doc of the api

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'cloudinary',
+    'drf_yasg',
 
     # our apps
     'authentication.apps.AuthenticationConfig',
